@@ -13,6 +13,10 @@ import {
   CardDescription,
 } from "@/components/ui/Card";
 import { productsData, ProductItem, allProducts } from "@/config/products"; // Import allProducts
+import { useForm } from "react-hook-form";
+import { IProduct } from "@/types/product";
+import { useCreateProductMutation } from "@/redux/api/productApi";
+import { useState } from "react";
 
 // Helper to get an icon based on category name
 const getCategoryIcon = (categoryName: string) => {
@@ -42,6 +46,36 @@ export default function ProductsPage() {
   const mainCategories = productsData[0]?.subItems || []; // Get top-level categories from productsData
   const allAvailableProducts = allProducts; // Get all flattened products
 
+  // Product creation form logic
+  const [createProduct, { isLoading, error }] = useCreateProductMutation();
+  const [successMsg, setSuccessMsg] = useState("");
+  const form = useForm<IProduct>({
+    defaultValues: {
+      title: "",
+      mode: "",
+      image: "",
+      brand: "",
+      category: "",
+      features: [],
+      description: "",
+      metaTitle: "",
+      metaDescription: "",
+      metaImageAlt: "",
+      metaTags: [],
+    },
+  });
+
+  const onSubmit = async (data: IProduct) => {
+    try {
+      await createProduct(data).unwrap();
+      form.reset();
+      setSuccessMsg("Product created successfully!");
+      setTimeout(() => setSuccessMsg(""), 3000);
+    } catch {
+      setSuccessMsg("");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section - Prominent Heading and Subtitle */}
@@ -62,6 +96,72 @@ export default function ProductsPage() {
             provide reliable solutions for every need.
           </p>
         </div>
+      </div>
+
+      {/* Product Creation Form */}
+      <div className="container mx-auto px-4 py-8">
+        <h2 className="text-2xl font-bold mb-4">Add New Product</h2>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="bg-white p-6 rounded shadow mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block font-semibold mb-1">Title</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("title", { required: true })} />
+            {form.formState.errors.title && <span className="text-red-500 text-xs">Title is required</span>}
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Mode</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("mode", { required: true })} />
+            {form.formState.errors.mode && <span className="text-red-500 text-xs">Mode is required</span>}
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Image URL</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("image")} />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Brand</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("brand", { required: true })} />
+            {form.formState.errors.brand && <span className="text-red-500 text-xs">Brand is required</span>}
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Category</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("category", { required: true })} />
+            {form.formState.errors.category && <span className="text-red-500 text-xs">Category is required</span>}
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Features (comma separated)</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("features")} onChange={e => form.setValue("features", e.target.value.split(",").map(f => f.trim()).filter(Boolean))} />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Description</label>
+            <textarea className="w-full border rounded px-3 py-2" {...form.register("description", { required: true })} />
+            {form.formState.errors.description && <span className="text-red-500 text-xs">Description is required</span>}
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Meta Title</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("metaTitle", { required: true })} />
+            {form.formState.errors.metaTitle && <span className="text-red-500 text-xs">Meta title is required</span>}
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Meta Description</label>
+            <textarea className="w-full border rounded px-3 py-2" {...form.register("metaDescription", { required: true })} />
+            {form.formState.errors.metaDescription && <span className="text-red-500 text-xs">Meta description is required</span>}
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Meta Image Alt</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("metaImageAlt", { required: true })} />
+            {form.formState.errors.metaImageAlt && <span className="text-red-500 text-xs">Meta image alt tag is required</span>}
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Meta Tags (comma separated)</label>
+            <input className="w-full border rounded px-3 py-2" {...form.register("metaTags")} onChange={e => form.setValue("metaTags", e.target.value.split(",").map(f => f.trim()).filter(Boolean))} />
+          </div>
+          <div className="col-span-1 md:col-span-2 flex items-center gap-4 mt-2">
+            <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors" disabled={isLoading}>
+              {isLoading ? "Creating..." : "Create Product"}
+            </button>
+            {successMsg && <span className="text-green-600 text-sm">{successMsg}</span>}
+            {error && <span className="text-red-500 text-sm">{(error as unknown as { data?: { message?: string } })?.data?.message || "Failed to create product"}</span>}
+          </div>
+        </form>
       </div>
 
       {/* Product Categories Section */}
