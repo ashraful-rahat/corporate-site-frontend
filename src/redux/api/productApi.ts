@@ -7,6 +7,7 @@ export const productApi = baseApi.injectEndpoints({
       query: () => ({
         url: "/products",
         method: "GET",
+
       }),
       providesTags: ["Products"],
     }),
@@ -16,6 +17,7 @@ export const productApi = baseApi.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["Products"],
+      transformResponse: (response: { data: IProduct }) => response.data,
     }),
     createProduct: builder.mutation<IProduct, FormData>({
       query: (body) => ({

@@ -56,7 +56,7 @@ const FileUpload = ({
   return (
     <div className="w-full space-y-2">
       {label && (
-        <label className="text-sm font-medium text-gray-700 dark:text-gray-200">
+        <label className="text-sm font-medium text-gray-700 ">
           {label}
         </label>
       )}
@@ -65,8 +65,8 @@ const FileUpload = ({
         className={cn(
           "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors",
           isDragActive
-            ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-            : "border-gray-300 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600",
+            ? "border-blue-500 bg-blue-50 /20"
+            : "border-gray-300 hover:border-gray-400  y-600",
           error && "border-red-500",
           className
         )}
@@ -74,7 +74,7 @@ const FileUpload = ({
         <input {...getInputProps()} />
         <div className="flex flex-col items-center gap-2">
           <Upload className="h-8 w-8 text-gray-400" />
-          <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="text-sm text-gray-600 ">
             {isDragActive ? (
               <p>Drop the files here ...</p>
             ) : (
@@ -93,7 +93,7 @@ const FileUpload = ({
 
       {/* Remove preview rendering logic */}
       {error && (
-        <p className="text-sm text-red-500 dark:text-red-400">{error}</p>
+        <p className="text-sm text-red-500 ">{error}</p>
       )}
     </div>
   );

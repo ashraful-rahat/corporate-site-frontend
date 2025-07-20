@@ -1,19 +1,16 @@
-// src/app/solutions/page.tsx
 "use client";
-
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
-import {
-  Network, // Structure Network
-  Wifi, // Enterprise Wi-Fi
-  Globe, // Wireless Broadband
-  Server, // Data Center
-  ShieldCheck, // Security
-  Camera, // CCTV Surveillance
-  ArrowRight, // For "Learn More" button
-} from "lucide-react";
 import { Button } from "@/components/ui/button"; // Assuming you have a Button component
+import Image from "next/image";
+import { useGetAllServicesQuery } from "@/redux/api/serviceApi/serviceApi";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"; // Import Accordion components
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -31,7 +28,7 @@ const fadeInUp: Variants = {
   },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -43,94 +40,39 @@ const staggerContainer = {
 };
 
 const SolutionsPage = () => {
-  const solutionsData = [
+  const { data, isLoading, isError } = useGetAllServicesQuery(undefined);
+  const solutions = data?.data || [];
+ 
+
+  if (isLoading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+  if (isError) {
+    return <div className="min-h-screen flex items-center justify-center text-red-500">Failed to load solutions.</div>;
+  }
+
+  const faqs = [
     {
-      id: 1,
-      icon: Network,
-      title: "Structure Network",
-      description:
-        "Robust wired and wireless infrastructure for seamless business operations.",
-      href: "/solutions/structure-network", // Link to the specific service page
-      color: "blue",
+      question: "What kind of businesses do you work with?",
+      answer: "We work with businesses of all sizes, from startups to large enterprises, across various industries including tech, healthcare, finance, and retail. Our solutions are scalable and customizable to meet diverse needs.",
     },
     {
-      id: 2,
-      icon: Wifi,
-      title: "Enterprise Wi-Fi",
-      description:
-        "Secure, high-capacity wireless networks for large offices and campuses.",
-      href: "/solutions/enterprise-wifi",
-      color: "purple",
+      question: "How long does it take to implement a solution?",
+      answer: "Implementation timelines vary depending on the complexity and scope of the project. After an initial consultation and assessment, we provide a detailed project plan with estimated timelines. We prioritize efficient delivery without compromising quality.",
     },
     {
-      id: 3,
-      icon: Globe,
-      title: "Wireless Broadband",
-      description:
-        "High-speed internet access to remote areas and challenging locations.",
-      href: "/solutions/wireless-broadband",
-      color: "indigo",
+      question: "Do you offer ongoing support and maintenance?",
+      answer: "Yes, we offer comprehensive post-implementation support and maintenance packages to ensure your solutions run smoothly. This includes regular updates, troubleshooting, performance monitoring, and dedicated technical assistance.",
     },
+ 
     {
-      id: 4,
-      icon: Server,
-      title: "Data Center",
-      description:
-        "State-of-the-art facilities ensuring optimal performance and data security.",
-      href: "/solutions/data-center",
-      color: "green",
-    },
-    {
-      id: 5,
-      icon: ShieldCheck,
-      title: "Security",
-      description:
-        "Comprehensive protection against cyber threats for your digital assets.",
-      href: "/solutions/security",
-      color: "emerald", // Changed from 'orange' for better color harmony
-    },
-    {
-      id: 6,
-      icon: Camera,
-      title: "CCTV Surveillance",
-      description:
-        "Intelligent video monitoring systems for enhanced property security and insights.",
-      href: "/solutions/cctv-surveillance",
-      color: "rose", // Changed from 'red' for better color harmony
+      question: "What makes your solutions different from competitors?",
+      answer: "Our unique approach combines cutting-edge technology with deep industry expertise. We focus on delivering tailored solutions that not only solve immediate challenges but also drive long-term growth and innovation, backed by exceptional customer service.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-700 to-purple-700 text-white py-16 text-center">
-        {" "}
-        {/* Reduced padding */}
-        <div className="container mx-auto px-4">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="text-4xl font-extrabold mb-3 leading-tight sm:text-5xl" // Smaller font size
-          >
-            Our Advanced <br />{" "}
-            <span className="bg-gradient-to-r from-cyan-300 to-white bg-clip-text text-transparent">
-              Solutions for Your Business
-            </span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-base max-w-3xl mx-auto leading-relaxed opacity-90 sm:text-lg" // Smaller font size
-          >
-            We provide tailored technology solutions that empower your
-            organization with robust infrastructure, seamless connectivity, and
-            uncompromised security.
-          </motion.p>
-        </div>
-      </div>
-
       {/* Solutions Grid */}
       <div className="container mx-auto px-4 py-12">
         {" "}
@@ -147,50 +89,79 @@ const SolutionsPage = () => {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3" // Reduced gap
+          className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
         >
-          {solutionsData.map((solution) => (
+          {solutions.map((solution: { _id: string; title: string; subtitle: string; image?: string }) => (
             <motion.div
-              key={solution.id}
+              key={solution._id}
               variants={fadeInUp}
-              className="group bg-white rounded-xl p-6 shadow-md border border-gray-100 transform hover:scale-[1.01] transition-all duration-300 relative overflow-hidden" // Smaller padding, less shadow/transform
+              className="group bg-white rounded-2xl shadow-xl border border-gray-200 transform hover:scale-[1.03] hover:shadow-2xl transition-all duration-300 relative overflow-hidden flex flex-col"
+              style={{ minHeight: 400 }}
             >
-              {/* Background gradient on hover */}
-              <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-${solution.color}-50 to-${solution.color}-100 z-0 rounded-xl`} // Smaller border radius
-              />
-
-              <div className="relative z-10 flex flex-col items-center text-center">
-                <div
-                  className={`w-12 h-12 bg-gradient-to-br from-${solution.color}-500 to-${solution.color}-700 rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform duration-300`} // Smaller icon container, reduced shadow
-                >
-                  <solution.icon className="w-6 h-6 text-white" />{" "}
-                  {/* Smaller icon */}
+              {/* Accent bar */}
+              <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 absolute top-0 left-0 z-20" />
+              {/* Large image at the top */}
+              {solution.image && typeof solution.image === 'string' && (
+                <div className="relative w-full aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={solution.image || "/placeholder.svg"}
+                    alt={solution.title}
+                    fill
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105 rounded-t-2xl"
+                    priority={true}
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-gray-900 transition-colors mb-2">
-                  {" "}
-                  {/* Smaller font size */}
+              )}
+              {/* Card content */}
+              <div className="flex flex-col flex-1 items-center text-center px-6 py-6">
+                <h3 className="text-2xl font-extrabold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                   {solution.title}
                 </h3>
-                <p className="text-gray-700 group-hover:text-gray-700 transition-colors mb-5 leading-relaxed flex-grow text-sm">
-                  {" "}
-                  {/* Smaller font size, reduced margin-bottom */}
-                  {solution.description}
+                <p className="text-gray-700 text-base leading-relaxed flex-grow">
+                  {solution.subtitle}
                 </p>
-                <Link href={solution.href} className="mt-auto">
-                  <Button
-                    size="sm" // Smaller button size
-                    className={`bg-gradient-to-r from-${solution.color}-600 to-${solution.color}-800 hover:from-${solution.color}-700 hover:to-${solution.color}-900 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-sm group-hover:shadow-md transform group-hover:scale-105 transition-all duration-300`} // Smaller padding, font size, shadow
-                  >
-                    Learn More <ArrowRight className="ml-1.5 w-3 h-3" />{" "}
-                    {/* Smaller icon */}
-                  </Button>
-                </Link>
               </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
+
+      {/* FAQ Section */}
+      <div className="container mx-auto px-4 py-12">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold text-gray-800 text-center mb-10 sm:text-4xl"
+        >
+          Frequently Asked Questions
+        </motion.h2>
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="max-w-3xl mx-auto"
+        >
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <AccordionItem value={`item-${index}`}>
+                  <AccordionTrigger className="text-left text-lg font-medium text-gray-800 hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-700 text-base leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
+        </motion.div>
+      </div>
+
+ 
 
       {/* General CTA Section */}
       <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-12">

@@ -4,11 +4,13 @@ export const productsValidation = {
   createProduct: z.object({
     body: z.object({
       title: z.string({ error: 'Title is required' }),
-      mode: z.string({ error: 'Mode is required' }),
+      model: z.string({ error: 'Mode is required' }),
       image: z.string({ error: 'Image is required' }).optional(),
       brand: z.string({ error: 'Brand is required' }),
+      coreBrand: z.string({ error: 'Core brand is required' }),
       category: z.string({ error: 'Category is required' }),
       features: z.array(z.string()).optional(),
+      isFeatured: z.boolean().optional(),
       description: z.string({ error: 'Description is required' }),
       metaTitle: z.string({ error: 'Meta title is required' }),
       metaDescription: z.string({ error: 'Meta description is required' }),
@@ -19,10 +21,12 @@ export const productsValidation = {
   updateProduct: z.object({
     body: z.object({
       title: z.string().optional(),
-      mode: z.string().optional(),
+      model: z.string().optional(),
       image: z.string().optional(),
       brand: z.string().optional(),
+      coreBrand: z.string().optional(),
       category: z.string().optional(),
+      isFeatured: z.boolean().optional(),
       features: z.array(z.string()).optional(),
       description: z.string().optional(),
       metaTitle: z.string().optional(),

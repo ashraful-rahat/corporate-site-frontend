@@ -205,12 +205,13 @@ export type ContactFormData = z.infer<typeof contactFormSchema>;
 // Product Schema
 export const productSchema = z.object({
   title: z.string().min(1, "Title is required"),
-  mode: z.string().min(1, "Mode is required"),
+  model: z.string().min(1, "Mode is required"),
   image: z.array(z.instanceof(File)).optional(),
   brand: z.string().min(1, "Brand is required"),
   coreBrand: z.string().min(1, "Core brand is required"),
   category: z.string().min(1, "Category is required"),
   features: z.array(z.string()).optional(),
+  isFeatured: z.boolean().optional(),
   description: z.string().min(1, "Description is required"),
   metaTitle: z.string().min(1, "Meta title is required"),
   metaDescription: z.string().min(10, "Meta description must be at least 10 characters"),

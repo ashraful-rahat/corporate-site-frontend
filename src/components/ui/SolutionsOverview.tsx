@@ -198,7 +198,7 @@ const SolutionsOverview = () => {
                   <Link href={solution.href} className="mt-auto w-full">
                     <Button
                       size="sm"
-                      className="w-full bg-janataBlue hover:bg-[#123a7a] text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center transition-all duration-300 transform hover:scale-105"
+                      className=" mx-auto !px-7  bg-janataBlue bg-[#123a7a] hover:bg-[#123a7a]/90 text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center transition-all duration-300 transform hover:scale-105"
                     >
                       Learn More <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
