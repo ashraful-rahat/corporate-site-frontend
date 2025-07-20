@@ -78,7 +78,7 @@ const DataCenter = () => {
               className="text-3xl font-extrabold text-gray-900 leading-tight mb-3 sm:text-4xl" // Smaller font size
             >
               State-of-the-Art{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#164897] to-[#123a7a] bg-clip-text text-transparent">
                 Data Center Solutions
               </span>
             </motion.h1>
@@ -164,12 +164,12 @@ const DataCenter = () => {
               <div className="text-center">
                 <Zap className="w-12 h-12 text-blue-300 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   {" "}
                   {/* Smaller font size */}
                   Guaranteed Uptime
                 </h3>
-                <p className="text-gray-100 text-sm opacity-90">
+                <p className="text-gray-900 text-sm opacity-90">
                   {" "}
                   {/* Smaller font size */}
                   Ensure continuous operation of your critical applications and
@@ -179,12 +179,12 @@ const DataCenter = () => {
               <div className="text-center">
                 <Thermometer className="w-12 h-12 text-blue-300 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   {" "}
                   {/* Smaller font size */}
                   Advanced Security & Compliance
                 </h3>
-                <p className="text-gray-100 text-sm opacity-90">
+                <p className="text-gray-900 text-sm opacity-90">
                   {" "}
                   {/* Smaller font size */}
                   Protect your valuable data with multi-layered security
@@ -194,10 +194,10 @@ const DataCenter = () => {
               <div className="text-center">
                 <Database className="w-12 h-12 text-blue-300 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   Optimized Performance & Efficiency
                 </h3>
-                <p className="text-gray-100 text-sm opacity-90">
+                <p className="text-gray-900 text-sm opacity-90">
                   {" "}
                   {/* Smaller font size */}
                   Benefit from high-performance infrastructure and

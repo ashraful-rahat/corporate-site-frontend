@@ -76,7 +76,7 @@ const Security = () => {
               className="text-3xl font-extrabold text-gray-900 leading-tight mb-3 sm:text-4xl" // Smaller font size
             >
               Comprehensive{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#164897] to-[#123a7a] bg-clip-text text-transparent">
                 Network Security Solutions
               </span>
             </motion.h1>
@@ -162,12 +162,12 @@ const Security = () => {
               <div className="text-center">
                 <Lock className="w-12 h-12 text-blue-300 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   {" "}
                   {/* Smaller font size */}
                   Safeguard Sensitive Data
                 </h3>
-                <p className="text-gray-100 text-sm opacity-90">
+                <p className="text-gray-900 text-sm opacity-90">
                   {" "}
                   {/* Smaller font size */}
                   Protect your confidential information from breaches and
@@ -177,12 +177,15 @@ const Security = () => {
               <div className="text-center">
                 <Fingerprint className="w-12 h-12 text-blue-300 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3
+                  className="text-lg  text-blue-800
+                 font-semibold mb-3"
+                >
                   {" "}
                   {/* Smaller font size */}
                   Meet Regulatory Compliance
                 </h3>
-                <p className="text-gray-100 text-sm opacity-90">
+                <p className="text-gray-900 text-sm opacity-90">
                   {" "}
                   {/* Smaller font size */}
                   Adhere to industry regulations and avoid costly fines and
@@ -192,10 +195,10 @@ const Security = () => {
               <div className="text-center">
                 <Activity className="w-12 h-12 text-blue-300 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   Ensure Business Continuity
                 </h3>
-                <p className="text-gray-100 text-sm opacity-90">
+                <p className="text-gray-900 text-sm opacity-90">
                   {" "}
                   {/* Smaller font size */}
                   Minimize downtime and disruptions caused by cyber incidents,

@@ -75,7 +75,7 @@ const StructureNetwork = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3 sm:text-4xl" // Smaller font size
+              className="text-3xl font-bold bg-gradient-to-r from-[#164897] to-[#123a7a] bg-clip-text text-transparent mb-3 sm:text-4xl" // Smaller font size
             >
               Structure Network Solutions
             </motion.h1>
@@ -160,7 +160,7 @@ const StructureNetwork = () => {
               <div className="text-center">
                 <LinkIcon className="w-12 h-12 text-blue-500 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800  font-semibold mb-3">
                   {" "}
                   {/* Smaller font size */}
                   Scalability for Future Growth
@@ -175,7 +175,7 @@ const StructureNetwork = () => {
               <div className="text-center">
                 <Zap className="w-12 h-12 text-blue-500 mx-auto mb-3" />{" "}
                 {/* Smaller icon, changed to Zap */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800  font-semibold mb-3">
                   {" "}
                   {/* Smaller font size */}
                   Enhanced Speed and Reliability
@@ -190,7 +190,7 @@ const StructureNetwork = () => {
               <div className="text-center">
                 <ShieldCheck className="w-12 h-12 text-blue-500 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   {" "}
                   {/* Smaller font size */}
                   Improved Data Security

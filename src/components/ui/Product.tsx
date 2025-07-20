@@ -5,7 +5,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image"; // For optimized images
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, Eye } from "lucide-react"; // Icons
+import { ArrowRight } from "lucide-react"; // Icons
 import { Button } from "@/components/ui/button"; // Assuming your button component
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card"; // Assuming your card components
 import { allProducts, Product } from "@/config/products"; // Import allProducts and Product interface
@@ -43,7 +43,7 @@ const FeaturedProducts = () => {
   const featuredProducts: Product[] = allProducts.slice(0, 4);
 
   return (
-    <section className="py-12 bg-gradient-to-br from-indigo-50 to-white">
+    <section className="py-12 bg-white">
       <div className="container mx-auto px-4 max-w-6xl">
         {" "}
         {/* Smaller max-width */}
@@ -58,7 +58,7 @@ const FeaturedProducts = () => {
             className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 tracking-tight leading-tight" // Smaller font size
           >
             Our{" "}
-            <span className="bg-gradient-to-r from-purple-600 to-indigo-700 bg-clip-text text-transparent">
+            <span className="text-[#1159ce] font-semibold">
               Featured Products
             </span>
           </motion.h2>
@@ -126,11 +126,10 @@ const FeaturedProducts = () => {
                     </div>
                     <div className="mt-auto pt-4 border-t border-gray-100">
                       <Button
-                        size="sm" // Smaller button size
-                        className="w-full bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center transition-all duration-300 transform hover:scale-105" // Smaller padding, font size
+                        size="sm"
+                        className="w-full bg-janataBlue hover:bg-[#123a7a] text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center transition-all duration-300 transform hover:scale-105"
                       >
-                        View Details <ArrowRight className="ml-2 w-4 h-4" />{" "}
-                        {/* Smaller icon */}
+                        View Details <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
                     </div>
                   </CardContent>
@@ -149,10 +148,11 @@ const FeaturedProducts = () => {
           >
             <Link href="/products">
               <Button
-                className="bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white px-6 py-3 text-base rounded-full shadow-md transform hover:scale-105 transition-all duration-300 font-semibold" // Smaller padding, font size, shadow
+                size="lg"
+                variant="outline"
+                className="border border-blue-500 text-blue-600 hover:bg-blue-700 hover:text-blue-700 px-6 py-3 text-base rounded-full transition-all duration-300"
               >
-                View All Products <Eye className="ml-2 w-4 h-4" />{" "}
-                {/* Smaller icon */}
+                View all Products <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
           </motion.div>

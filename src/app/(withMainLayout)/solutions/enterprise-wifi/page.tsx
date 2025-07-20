@@ -72,7 +72,7 @@ const EnterpriseWiFi = () => {
               className="text-3xl font-extrabold text-gray-900 leading-tight mb-3 sm:text-4xl" // Smaller font size
             >
               Enterprise{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#164897] to-[#123a7a] bg-clip-text text-transparent">
                 Wi-Fi Solutions
               </span>
             </motion.h1>
@@ -160,7 +160,7 @@ const EnterpriseWiFi = () => {
               security.
             </p>
             <Button
-              className="bg-blue-300 text-blue-700 hover:bg-blue-50 px-8 py-2.5 rounded-full text-base font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300" // Smaller padding, font size, shadow
+              className="bg-blue-500 text-blue-700 hover:bg-blue-900 px-8 py-2.5 rounded-full text-base font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300" // Smaller padding, font size, shadow
             >
               Get a Free Consultation <ArrowRight className="ml-1.5 w-4 h-4" />{" "}
               {/* Smaller icon */}
