@@ -71,7 +71,7 @@ const Testimonials = () => {
             className="text-2xl md:text-3xl font-bold text-gray-900 mb-3"
           >
             Trusted by{" "}
-            <span className="bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="text-[#1159ce] font-semibold">
               Leading Businesses
             </span>
           </motion.h2>

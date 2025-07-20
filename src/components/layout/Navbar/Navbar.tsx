@@ -162,8 +162,8 @@ const Navbar = () => {
                     href={item.href}
                     className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
                       isActiveRoute(item.href)
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md"
-                        : "text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50"
+                        ? "bg-[#164897] text-white shadow-md"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
                     }`}
                   >
                     <span>{item.name}</span>

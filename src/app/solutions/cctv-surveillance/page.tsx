@@ -67,7 +67,7 @@ const CCTVSurveillance = () => {
               initial={{ opacity: 0, y: 20 }} // Smaller initial y
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }} // Faster transition
-              className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-3 sm:text-4xl" // Smaller font size
+              className="text-3xl font-bold bg-gradient-to-r from-[#164897] to-[#123a7a] bg-clip-text text-transparent mb-3 sm:text-4xl" // Smaller font size
             >
               Intelligent CCTV Surveillance Systems
             </motion.h1>
@@ -152,7 +152,7 @@ const CCTVSurveillance = () => {
               <div className="text-center">
                 <Shield className="w-12 h-12 text-blue-500 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   {" "}
                   {/* Smaller font size */}
                   Effective Crime Deterrence
@@ -167,7 +167,7 @@ const CCTVSurveillance = () => {
               <div className="text-center">
                 <Eye className="w-12 h-12 text-blue-500 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   {" "}
                   {/* Smaller font size */}
                   24/7 Remote Monitoring
@@ -182,7 +182,7 @@ const CCTVSurveillance = () => {
               <div className="text-center">
                 <Video className="w-12 h-12 text-blue-500 mx-auto mb-3" />{" "}
                 {/* Smaller icon */}
-                <h3 className="text-lg font-semibold mb-3">
+                <h3 className="text-lg text-blue-800 font-semibold mb-3">
                   Reliable Evidence Collection
                 </h3>
                 <p className="text-gray-600 text-sm">

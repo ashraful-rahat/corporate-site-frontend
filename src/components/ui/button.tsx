@@ -16,9 +16,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       "inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-xl";
 
     const variants = {
-      default: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",
+      default:
+        "bg-[#164897] text-white hover:bg-[#123a7a] focus:ring-[#123a7a]",
       outline:
-        "border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500",
+        "border-2 border-[#164897] text-[#164897] hover:bg-[#164897] hover:text-white focus:ring-[#123a7a]",
     };
 
     const sizes = {

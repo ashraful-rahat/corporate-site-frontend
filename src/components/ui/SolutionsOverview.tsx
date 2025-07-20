@@ -1,4 +1,3 @@
-// src/components/SolutionsOverview.tsx
 "use client";
 
 import React from "react";
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Animation Variants
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -28,6 +28,43 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+// Color Mapping
+const colorGradients: Record<
+  string,
+  { light: string; dark: string; bg: string }
+> = {
+  blue: {
+    light: "from-blue-500",
+    dark: "to-blue-700",
+    bg: "bg-gradient-to-br from-blue-50 to-blue-100",
+  },
+  purple: {
+    light: "from-purple-500",
+    dark: "to-purple-700",
+    bg: "bg-gradient-to-br from-purple-50 to-purple-100",
+  },
+  indigo: {
+    light: "from-indigo-500",
+    dark: "to-indigo-700",
+    bg: "bg-gradient-to-br from-indigo-50 to-indigo-100",
+  },
+  green: {
+    light: "from-green-500",
+    dark: "to-green-700",
+    bg: "bg-gradient-to-br from-green-50 to-green-100",
+  },
+  emerald: {
+    light: "from-emerald-500",
+    dark: "to-emerald-700",
+    bg: "bg-gradient-to-br from-emerald-50 to-emerald-100",
+  },
+  rose: {
+    light: "from-rose-500",
+    dark: "to-rose-700",
+    bg: "bg-gradient-to-br from-rose-50 to-rose-100",
   },
 };
 
@@ -110,7 +147,7 @@ const SolutionsOverview = () => {
             className="text-2xl md:text-3xl font-bold text-gray-900 mb-3"
           >
             Tailored{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-[#164897] bg-clip-text text-transparent">
               Solutions
             </span>{" "}
             for Your Success
@@ -134,42 +171,42 @@ const SolutionsOverview = () => {
           viewport={{ once: true, amount: 0.3 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {solutionsData.map((solution) => (
-            <motion.div
-              key={solution.id}
-              variants={fadeInUp}
-              className="bg-white rounded-xl p-5 shadow-md border border-gray-200 hover:border-blue-500 group transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
-            >
-              {/* Gradient hover background */}
-              <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-${solution.color}-50 to-${solution.color}-100 z-0 rounded-xl`}
-              />
-              <div className="relative z-10 flex flex-col items-center text-center">
+          {solutionsData.map((solution) => {
+            const color = colorGradients[solution.color];
+            return (
+              <motion.div
+                key={solution.id}
+                variants={fadeInUp}
+                className="bg-white rounded-xl p-5 shadow-md border border-gray-200 hover:border-blue-500 group transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
+              >
+                {/* Static gradient background via mapping */}
                 <div
-                  className={`w-12 h-12 bg-gradient-to-br from-${solution.color}-500 to-${solution.color}-700 rounded-full flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform duration-300`}
-                >
-                  <solution.icon className="w-5 h-5 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {solution.title}
-                </h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  {solution.description}
-                </p>
-                <Link href={solution.href} className="mt-auto w-full">
-                  {" "}
-                  {/* Added w-full */}
-                  <Button
-                    size="sm"
-                    // Changed button color to match FeaturedProducts' View Details button
-                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center transition-all duration-300 transform hover:scale-105"
+                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${color?.bg} z-0 rounded-xl`}
+                />
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div
+                    className={`w-12 h-12 ${color?.light} ${color?.dark} bg-gradient-to-br rounded-full flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform duration-300`}
                   >
-                    Learn More <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+                    <solution.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {solution.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {solution.description}
+                  </p>
+                  <Link href={solution.href} className="mt-auto w-full">
+                    <Button
+                      size="sm"
+                      className="w-full bg-janataBlue hover:bg-[#123a7a] text-white py-2 rounded-lg text-sm font-semibold flex items-center justify-center transition-all duration-300 transform hover:scale-105"
+                    >
+                      Learn More <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* CTA */}
@@ -183,10 +220,9 @@ const SolutionsOverview = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border border-blue-500 text-blue-600 hover:bg-blue-50 hover:text-blue-700 px-6 py-3 text-base rounded-full transition-all duration-300" // Adjusted padding and text size for consistency
+              className="border border-blue-500 text-blue-600 hover:bg-blue-700 hover:text-blue-700 px-6 py-3 text-base rounded-full transition-all duration-300"
             >
-              Explore All Services <ArrowRight className="ml-2 w-4 h-4" />{" "}
-              {/* Adjusted icon size */}
+              Explore All Services <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </Link>
         </motion.div>

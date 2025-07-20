@@ -65,10 +65,10 @@ const WhyChooseUs = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-100 rounded-full text-purple-700 text-xs font-medium mb-3"
+            className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 rounded-full text-blue-700 text-xs font-medium mb-3"
           >
-            <Sparkles className="w-3 h-3" />
-            <span>Our Competitive Edge</span>
+            <Sparkles className="w-4 h-4" />
+            <span>Our Core Expertise</span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -77,10 +77,9 @@ const WhyChooseUs = () => {
             className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight"
           >
             Why Clients{" "}
-            <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Choose Us
-            </span>
+            <span className="text-[#1159ce] font-semibold">Choose Us</span>
           </motion.h2>
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
