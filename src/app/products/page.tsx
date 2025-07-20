@@ -205,39 +205,6 @@ export default function ProductsPage() {
           </div>
         </div>
       </div>
-
-      {/* CTA Section (Optional, keep if needed) */}
-      <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-12">
-        {" "}
-        {/* Reduced padding */}
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 sm:text-4xl">
-            Need Help Choosing?
-          </h2>{" "}
-          {/* Smaller font size */}
-          <p className="text-lg mb-6 max-w-xl mx-auto sm:text-xl">
-            {" "}
-            {/* Smaller font size */}
-            Our networking experts are here to help you find the perfect
-            solution for your needs.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            {" "}
-            {/* Reduced gap */}
-            <Button className="bg-blue-600 hover:bg-blue-700 px-6 py-2.5 text-base">
-              Contact Expert
-            </Button>
-            <Link href="/products">
-              <Button
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-gray-900 px-6 py-2.5 text-base"
-              >
-                View All Products
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

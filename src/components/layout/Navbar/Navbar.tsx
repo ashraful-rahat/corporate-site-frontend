@@ -5,9 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ChevronRight, Wifi } from "lucide-react";
+import { Menu, X, Wifi } from "lucide-react";
 import { NAV_ITEMS } from "@/config/navigation";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type NavItem = {
   name: string;
   href: string;
@@ -16,6 +17,7 @@ type NavItem = {
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [openMobileSubMenus, setOpenMobileSubMenus] = useState<
     Record<string, boolean>
   >({});
@@ -58,78 +60,12 @@ const Navbar = () => {
     }
   }, [isMobileMenuOpen]);
 
-  const handleToggleMobileSubMenu = (key: string) => {
-    setOpenMobileSubMenus((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
-
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setOpenMobileSubMenus({});
   };
 
   const isActiveRoute = (href: string) => pathname === href;
-
-  const renderMobileNavItems = (
-    items: NavItem[],
-    level = 0,
-    parentKey = ""
-  ) => (
-    <motion.div
-      className={`${level > 0 ? "ml-4 pl-4 border-l border-blue-100" : ""}`}
-    >
-      {items.map((item) => {
-        const key = parentKey ? `${parentKey}-${item.name}` : item.name;
-        const isOpen = openMobileSubMenus[key];
-        const isActive = isActiveRoute(item.href);
-        return (
-          <motion.div key={key} className="mb-1">
-            <div className="flex items-center justify-between">
-              <Link
-                href={item.href}
-                className={`flex-1 px-4 py-2 rounded-xl text-left text-sm transition-all duration-300 transform hover:scale-[1.02] ${
-                  isActive
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                    : level === 0
-                    ? "text-gray-800 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-700"
-                    : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-                }`}
-                onClick={closeMobileMenu}
-              >
-                {item.name}
-              </Link>
-              {item.subItems && (
-                <button
-                  onClick={() => handleToggleMobileSubMenu(key)}
-                  className="p-2 text-gray-500 hover:text-blue-600 transition duration-300 hover:bg-blue-50 rounded-full"
-                >
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-              )}
-            </div>
-            {item.subItems && (
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden mt-1"
-                  >
-                    {renderMobileNavItems(item.subItems, level + 1, key)}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            )}
-          </motion.div>
-        );
-      })}
-    </motion.div>
-  );
 
   return (
     <>
@@ -167,49 +103,7 @@ const Navbar = () => {
                     }`}
                   >
                     <span>{item.name}</span>
-                    {item.subItems && (
-                      <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
-                    )}
                   </Link>
-
-                  {/* Dropdown */}
-                  {item.subItems && (
-                    <motion.div className="absolute top-full left-0 mt-2 w-64 bg-white/95 rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                      <div className="p-2">
-                        {item.subItems.map((subItem) => (
-                          <div
-                            key={subItem.name}
-                            className="relative group/sub"
-                          >
-                            <Link
-                              href={subItem.href}
-                              className="flex items-center justify-between w-full px-4 py-2 text-sm text-gray-700 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600"
-                            >
-                              <span>{subItem.name}</span>
-                              {subItem.subItems && (
-                                <ChevronRight className="w-4 h-4" />
-                              )}
-                            </Link>
-                            {subItem.subItems && (
-                              <motion.div className="absolute left-full top-0 ml-2 w-56 bg-white/95 rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
-                                <div className="p-2">
-                                  {subItem.subItems.map((nestedItem) => (
-                                    <Link
-                                      key={nestedItem.name}
-                                      href={nestedItem.href}
-                                      className="block w-full px-4 py-2 text-sm text-gray-700 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600"
-                                    >
-                                      {nestedItem.name}
-                                    </Link>
-                                  ))}
-                                </div>
-                              </motion.div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
                 </motion.div>
               ))}
             </div>
@@ -283,9 +177,17 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4">
-                  {renderMobileNavItems(NAV_ITEMS)}
+                  {NAV_ITEMS.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block px-4 py-2 text-sm text-gray-800 rounded-xl hover:bg-blue-50"
+                      onClick={closeMobileMenu}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </div>
-                {/* Removed the Call Now link from here */}
               </div>
             </motion.div>
           </motion.div>
